@@ -44,11 +44,17 @@ public class SetupMain {
         String portN = args[1]; //arg[1]
         int numberTest = Integer.parseInt(args[2]); //arg[2]
         int time = Integer.parseInt(args[3]); //arg[3]
+        
+        // Time to delay for compute-heavy tests
+        int computeSeconds = 0;
+        if (args.length == 5) {
+            computeSeconds = Integer.parseInt(args[4]);
+        }
 
         SetupMain setupMain = new SetupMain();
 
         setupMain.fileName = "Data_Test_" + numberTest + ".csv";
-        setupMain.apacheHttpClient = new ApacheHttpClient(hostName, portN, setupMain.fileName);
+        setupMain.apacheHttpClient = new ApacheHttpClient(hostName, portN, setupMain.fileName, computeSeconds);
 
         String[] methodNames = {"echoDate","echoStruct","echoSynthetic","echoArray","getOrder","echoOrder"};
 
@@ -65,7 +71,6 @@ public class SetupMain {
         double random;
         while (TimeUnit.NANOSECONDS.toMinutes(System.nanoTime() - start) < totalTime){
             random = Math.random() * 100 + 0;
-
             if(random < 10){
                 apacheHttpClient.sendPostRequest("echoVoid","");
             }
@@ -109,6 +114,7 @@ public class SetupMain {
     private void prepare(String methodName) {
         int size = 100;
         switch (methodName) {
+            case "echoDateCompute":
             case "echoDate":
                 try {
                     xmlCal = new SimpleDateFormat("yyyyMMdd").parse("20171120");
@@ -116,12 +122,14 @@ public class SetupMain {
                     throw new RuntimeException(e);
                 }
                 break;
+            case "echoStructCompute":
             case "echoStruct":
                 struct = new Struct();
                 struct.setVarInt(5);
                 struct.setVarFloat(2.5f);
                 struct.setVarString("Hello There!");
                 break;
+            case "echoSyntheticCompute":
             case "echoSynthetic":
                 struct = new Struct();
                 struct.setVarInt(5);
@@ -133,6 +141,7 @@ public class SetupMain {
                 synthetic.setS(struct);
                 synthetic.setBytes(bytes);
                 break;
+            case "echoArrayCompute":
             case "echoArray":
                 itemArray = new Item[size];
 
@@ -157,10 +166,12 @@ public class SetupMain {
                     itemArray[i].setCreationdate(cal);
                 }
                 break;
+            case "getOrderCompute":
             case "getOrder":
                 orderId = 1;
                 customerId = 1;
                 break;
+            case "echoOrderCompute":
             case "echoOrder":
                 int id = 1;
 
