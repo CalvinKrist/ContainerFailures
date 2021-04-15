@@ -114,7 +114,6 @@ public class SetupMain {
     private void prepare(String methodName) {
         int size = 100;
         switch (methodName) {
-            case "echoDateCompute":
             case "echoDate":
                 try {
                     xmlCal = new SimpleDateFormat("yyyyMMdd").parse("20171120");
@@ -122,14 +121,12 @@ public class SetupMain {
                     throw new RuntimeException(e);
                 }
                 break;
-            case "echoStructCompute":
             case "echoStruct":
                 struct = new Struct();
                 struct.setVarInt(5);
                 struct.setVarFloat(2.5f);
                 struct.setVarString("Hello There!");
                 break;
-            case "echoSyntheticCompute":
             case "echoSynthetic":
                 struct = new Struct();
                 struct.setVarInt(5);
@@ -141,7 +138,6 @@ public class SetupMain {
                 synthetic.setS(struct);
                 synthetic.setBytes(bytes);
                 break;
-            case "echoArrayCompute":
             case "echoArray":
                 itemArray = new Item[size];
 
@@ -166,12 +162,10 @@ public class SetupMain {
                     itemArray[i].setCreationdate(cal);
                 }
                 break;
-            case "getOrderCompute":
             case "getOrder":
                 orderId = 1;
                 customerId = 1;
                 break;
-            case "echoOrderCompute":
             case "echoOrder":
                 int id = 1;
 
