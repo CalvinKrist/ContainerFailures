@@ -13,13 +13,15 @@ import org.apache.http.util.EntityUtils;
 public class ApacheHttpClient {
 	private String host;
 	private String port;
+	private int computeSeconds;
 	private HttpClient httpClient;
 
 	private CSV csv;
 
-	public ApacheHttpClient(String host, String port, String fileName){
+	public ApacheHttpClient(String host, String port, String fileName, int computeSeconds){
 		this.host = host;
 		this.port = port;
+		this.computeSeconds = computeSeconds;
 		csv = new CSV(fileName);
 		httpClient = HttpClientBuilder.create().build();
 	}
@@ -38,6 +40,7 @@ public class ApacheHttpClient {
 			long startExecute = System.nanoTime();
 			while (true){
 				try {
+					Thread.sleep(computeSeconds * 1000); // Add compute delay on each attempt
 					response = httpClient.execute(postRequest);
 					statusCode = response.getStatusLine().getStatusCode();
 					if(statusCode == 200 || statusCode == 204){
@@ -62,7 +65,7 @@ public class ApacheHttpClient {
 		}
 	}
 
-	public void sendGetRequest(String type){
+	public void sendGetRequest(String type, int computeSeconds){
 		boolean serverFail = false;
 		long firstResponseError = 0;
 		int statusCode;
@@ -72,7 +75,8 @@ public class ApacheHttpClient {
 		long startExecute = System.nanoTime();
 		while (true){
             try {
-                response = httpClient.execute(getRequest);
+                Thread.sleep(computeSeconds * 1000); // Add compute delay on each attempt
+				response = httpClient.execute(getRequest);
                 statusCode = response.getStatusLine().getStatusCode();
                 if(statusCode == 200 || statusCode == 204)
                     break;
