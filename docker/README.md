@@ -13,3 +13,9 @@ The source code then includes a `Dockerfile` which can be used to build the serv
 #### Running the Server
 
 Run the server with `sudo docker run -p 8080:8080 wsserver`. This exposes the normal HTTP REST server on port `8080`. You could also expose the HTTPS server on `8443` if desired. You can test your conenction by running `curl 127.0.0.1:8080/server-example/rest/wstest/echoVoid` which should return an empty response (without raising server errors), and then run ` curl -X POST --header "Content-Type: application/json" --data 'hi' 127.0.0.1:8080/server-example/rest/wstest/echoString`, which should return the string 'hi'.
+
+### Running the Experiments
+
+1. Create the docker server image and name it `wsserver`
+2. Run `./wstest/dockerTests.sh --useNewContainer`. The flag ensures the script will stop and create new docker containers between each type of test, while without the flag it will reuse the same container and any performance degradation will stack.
+3. Experiment output will be found at `wstest/client_emulator/*.csv`
