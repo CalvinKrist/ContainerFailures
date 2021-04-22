@@ -1,27 +1,42 @@
 #!/bin/bash
+set -ex
 
-docker start amazing_almeida
+id="$2"
 
-sleep 3.25m
+run_client() {
+	cd ../client_emulator
+	java -jar Client.jar localhost 8080 "$id" 14
+}
 
-docker pause amazing_almeida
-docker unpause amazing_almeida
+docker start $1
 
-sleep 2.5m
-
-docker pause amazing_almeida
-docker unpause amazing_almeida
-
-sleep 2.5m
-
-docker pause amazing_almeida
-docker unpause amazing_almeida
-
-sleep 2.5m
-
-docker pause amazing_almeida
-docker unpause amazing_almeida
+run_client &
 
 sleep 3.25m
 
-docker stop amazing_almeida
+docker pause $1
+docker unpause $1
+
+sleep 2.5m
+
+docker pause $1
+docker unpause $1
+
+sleep 2.5m
+
+docker pause $1
+docker unpause $1
+
+sleep 2.5m
+
+docker pause $1
+docker unpause $1
+
+sleep 3.25m
+
+docker stop $1
+
+until [ -f "../client_emulator/Results_Data_Test_$2.csv" ]
+do
+     sleep 5
+done
