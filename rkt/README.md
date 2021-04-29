@@ -1,12 +1,10 @@
-## Initial Steps
+## Testing
 
-From a macos or windows host machine:
-* Follow https://rocket.readthedocs.io/en/latest/Documentation/trying-out-rkt/
-  * git clone https://github.com/rkt/rkt
-  * cd rkt
-  * change scripts/install-rkt.sh by removing the gpg key download and gpg check after the rkt wget's, the site no longer hosts the key
-  * vagrant up --provision
-  * vagrant ssh (this will put you inside the machine)
-  * rkt --insecure-options=image run docker://jboss/wildfly
-  
+All of the files should currently be set up to just run ./rktTests from the current directory.
+
+The Client.jar is in tests, and may need to be swapped out if rebuilt.
+
+The aci in ./rkt called "library-wsserver-latest.aci" will have to be rebuilt if the base image changes. It can be converted from a dockerfile using the docker2aci utility
+
+Very side note: The "sleep Xm" will only work where that version of sleep is supported (swap to seconds for mac)
 
