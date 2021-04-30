@@ -1,0 +1,13 @@
+rest\Synthetic.class
+rest\EchoOrderResponse.class
+rest\Item.class
+rest\Order.class
+rest\LineItem.class
+rest\RestApplicationConfig.class
+rest\EchoOrderRequest.class
+rest\Address.class
+rest\Customer.class
+rest\Location.class
+rest\OrderBL.class
+rest\TestServiceImpl.class
+rest\Struct.class

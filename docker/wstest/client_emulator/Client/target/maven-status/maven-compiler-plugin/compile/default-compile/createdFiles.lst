@@ -1,0 +1,14 @@
+services\Synthetic.class
+services\LineItem.class
+services\EchoOrderResponse.class
+services\Address.class
+services\Customer.class
+services\Order.class
+services\CSV.class
+services\SetupMain.class
+services\Struct.class
+services\EchoOrderRequest.class
+services\OrderBL.class
+services\ApacheHttpClient.class
+services\Item.class
+services\Location.class
