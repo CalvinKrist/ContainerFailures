@@ -3,16 +3,26 @@ set -ex
 
 id="$2"
 
+jarName="Client.jar"
+if [ $# -eq 3 ]
+  then
+    if [ $3 = "--compute" ]
+      then
+        jarName="ClientCompute.jar"
+    fi
+fi
+
 run_client() {
 	cd ../client_emulator
-	java -jar Client.jar localhost 8080 "$id" 14
+	java -jar $jarName localhost 8080 "$id" 14
 }
 
 docker start $1
 
 run_client &
 
-sleep 14m
+#sleep 14m
+sleep 14.5m
 
 docker stop $1
 

@@ -5,8 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>client-example</groupId>
-    <artifactId>Client</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>ClientCompute</artifactId>
+    <version>1.0</version>
+
+	<properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </properties>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
@@ -29,38 +36,48 @@
             <artifactId>jackson-core</artifactId>
             <version>2.8.6</version>
         </dependency>
+        
         <!-- http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.8.6/jackson-annotations-2.8.6.jar -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>2.8.6</version>
         </dependency>
-        <!-- http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.8.6/jackson-databind-2.8.6.jar -->
+       
+		<!-- http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.8.6/jackson-databind-2.8.6.jar -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.8.6</version>
         </dependency>
+        
         <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
 		<dependency>
 		    <groupId>javax.xml.bind</groupId>
 		    <artifactId>jaxb-api</artifactId>
 		    <version>2.3.1</version>
-		    
 		    <exclusions>
-	   		<exclusion> 
-	      		<groupId>org.slf4j</groupId>
-	      		<artifactId>slf4j-log4j12</artifactId>
-	   		</exclusion>
-	   		<exclusion> 
-	      		<groupId>log4j</groupId>
-	      		<artifactId>log4j</artifactId>
-	  		</exclusion>
-	</exclusions>
+		   		<exclusion> 
+		      		<groupId>org.slf4j</groupId>
+		      		<artifactId>slf4j-log4j12</artifactId>
+		   		</exclusion>
+		   		<exclusion> 
+		      		<groupId>log4j</groupId>
+		      		<artifactId>log4j</artifactId>
+		  		</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin -->
+		<dependency>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-assembly-plugin</artifactId>
+		    <version>3.3.0</version>
 		</dependency>
     </dependencies>
 
     <build>
+        <finalName>ClientCompute</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -72,6 +89,30 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-assembly-plugin</artifactId>
+			  <version>3.3.0</version>
+			  <configuration>
+			    <archive>
+			      <manifest>
+			        <mainClass>services.SetupMain</mainClass>
+			      </manifest>
+			    </archive>
+			    <descriptorRefs>
+			      <descriptorRef>jar-with-dependencies</descriptorRef>
+			    </descriptorRefs>
+			  </configuration>
+			  <executions>
+			    <execution>
+			      <id>make-assembly</id> 
+			      <phase>package</phase> <!-- packaging phase -->
+			      <goals>
+			        <goal>single</goal>
+			      </goals>
+			    </execution>
+			  </executions>
+			</plugin>
         </plugins>
     </build>
 </project>

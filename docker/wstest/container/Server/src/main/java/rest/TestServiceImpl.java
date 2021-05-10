@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 public class TestServiceImpl
 {
-    private static final int computeSeconds = 30;
+    private static final int computeSeconds = 10;
 	
     private static void doComputation() {
     	try {

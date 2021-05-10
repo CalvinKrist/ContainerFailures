@@ -74,55 +74,55 @@ docker stop "$container_name"
 serverName=wsservercomp
 container_name=$(sudo docker run -d -p 8080:8080 $serverName)
 
-./docker_baseline.sh $container_name 9
+./docker_baseline.sh $container_name 9 --compute
 
 if [ "$useNewContainer" = true ] ; then
 	docker stop "$container_name"
 	container_name=$(sudo docker run -d -p 8080:8080 $serverName)
 fi
 
-./docker_container_force_stop.sh $container_name 10
+./docker_container_force_stop.sh $container_name 10 --compute
 
 if [ "$useNewContainer" = true ] ; then
 	docker stop "$container_name"
 	container_name=$(sudo docker run -d -p 8080:8080 $serverName)
 fi
 
-./docker_container_pause.sh $container_name 11
+./docker_container_pause.sh $container_name 11 --compute
 
 if [ "$useNewContainer" = true ] ; then
 	docker stop "$container_name"
 	container_name=$(sudo docker run -d -p 8080:8080 $serverName)
 fi
 
-./docker_container_restart.sh $container_name 12
+./docker_container_restart.sh $container_name 12 --compute
 
 if [ "$useNewContainer" = true ] ; then
 	docker stop "$container_name"
 	container_name=$(sudo docker run -d -p 8080:8080 $serverName)
 fi
 
-./docker_container_stop.sh $container_name 13
+./docker_container_stop.sh $container_name 13 --compute
 
 if [ "$useNewContainer" = true ] ; then
 	docker stop "$container_name"
 	container_name=$(sudo docker run -d -p 8080:8080 $serverName)
 fi
 
-./docker_service_force_shutdown.sh $container_name 14
+./docker_service_force_shutdown.sh $container_name 14 --compute
 
 if [ "$useNewContainer" = true ] ; then
 	docker stop "$container_name"
 	container_name=$(sudo docker run -d -p 8080:8080 $serverName)
 fi
 
-./docker_service_restart.sh $container_name 15
+./docker_service_restart.sh $container_name 15 --compute
 
 if [ "$useNewContainer" = true ] ; then
 	docker stop "$container_name"
 	container_name=$(sudo docker run -d -p 8080:8080 $serverName)
 fi
 
-./docker_service_shutdown.sh $container_name 16
+./docker_service_shutdown.sh $container_name 16 --compute
 
 docker stop "$container_name"

@@ -12,7 +12,7 @@ public class CSV {
             fileWriter = new FileWriter (new File(fileName),true);
             String columnNamesList = "TestCase,ServerFail,Request Time,Response Time,Time Taken, First Response Time Error\n";
             fileWriter.write(columnNamesList);
-            //fileWriter.close();
+            fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -21,7 +21,7 @@ public class CSV {
     public void writeFile(String testCase, boolean d, long startRequest, long endRequest, long firstResponseError){
         String delimiter = ",";
         try {
-            //fileWriter = new FileWriter(fileName,true);
+            fileWriter = new FileWriter(fileName,true);
             String builder = testCase +
                     delimiter +
                     d +
@@ -35,7 +35,7 @@ public class CSV {
                     firstResponseError +
                     '\n';
             fileWriter.write(builder);
-            //fileWriter.close();
+            fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -104,7 +104,7 @@
     
 
     <build>
-        <finalName>server-example</finalName>
+        <finalName>server-compute</finalName>
         <plugins>
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>

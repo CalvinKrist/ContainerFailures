@@ -65,6 +65,7 @@ public class SetupMain {
         double random;
         while (TimeUnit.NANOSECONDS.toMinutes(System.nanoTime() - start) < totalTime){
             random = Math.random() * 100 + 0;
+            
             if(random < 10){
                 apacheHttpClient.sendPostRequest("echoVoid","");
             }
@@ -99,7 +100,7 @@ public class SetupMain {
         }
 
         long end = System.nanoTime();
-        double throughput = countIterations/(end-start);
+        double throughput = ((double)countIterations)/(end-start);
         //System.out.println("Throughput: " + throughput);
 
         apacheHttpClient.getCsv().writeResult(countIterations, start, end, throughput);
