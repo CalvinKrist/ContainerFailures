@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
 
 # Need to find throughput after each fault injection,
 # recovery time from fault injection, and overall
@@ -96,4 +97,4 @@ def analyze_experiment(file_path):
 		print("Average recovery ime in milliseconds: --")
 		print("Availability: 1.0")
 
-analyze_experiment("wstest/client_emulator/Data_Test_1.csv")
+analyze_experiment(sys.argv[1])
