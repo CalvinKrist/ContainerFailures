@@ -13,7 +13,7 @@ vagrant ssh -c 'nohup sudo rkt run --insecure-options=image --net=host --uuid-fi
 
 run_client &
 
-sleep 14m
+sleep 14.5m
 
 vagrant ssh -c "sudo rkt stop --uuid-file=/tmp/uuid"
 

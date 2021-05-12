@@ -33,7 +33,8 @@ sleep 2.5m
 vagrant ssh -c "sudo rkt stop --force --uuid-file=/tmp/uuid"
 vagrant ssh -c 'nohup sudo rkt run --insecure-options=image --net=host --uuid-file-save="/tmp/uuid" wsserver.aci & sleep 30s'
 
-sleep 3.25m
+#sleep 3.25m
+sleep 3.5m
 
 vagrant ssh -c "sudo rkt stop --force --uuid-file=/tmp/uuid"
 

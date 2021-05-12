@@ -33,7 +33,8 @@ sleep 2.5m
 vagrant ssh -c 'sudo kill $(cat save_pid.txt)'
 vagrant ssh -c 'nohup sudo rkt run --insecure-options=image --net=host --uuid-file-save="/tmp/uuid" new.aci & echo $! > save_pid.txt; sleep 20s'
 
-sleep 3.25m
+#sleep 3.25m
+sleep 3.5m
 
 vagrant ssh -c "sudo rkt stop --uuid-file=/tmp/uuid"
 

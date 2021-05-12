@@ -33,7 +33,8 @@ sleep 2.5m
 vagrant ssh -c "kill -19 ${pid}"
 vagrant ssh -c "kill -18 ${pid}"
 
-sleep 3.25m
+#sleep 3.25m
+sleep 3.5m
 
 vagrant ssh -c "sudo rkt stop --uuid-file=/tmp/uuid"
 
