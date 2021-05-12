@@ -5,7 +5,7 @@ id="$1"
 
 run_client() {
 	cd ../results
-	java -jar ../tests/Client.jar localhost 8080 "$id" 14
+	java -jar ../tests/ClientCompute.jar localhost 8080 "$id" 14
 }
 
 cd ../rkt
@@ -13,28 +13,28 @@ vagrant ssh -c 'nohup sudo rkt run --insecure-options=image --net=host --uuid-fi
 
 run_client &
 
-sleep 3.25m
+sleep 195
 
 vagrant ssh -c "sudo rkt stop --force --uuid-file=/tmp/uuid"
 vagrant ssh -c 'nohup sudo rkt run --insecure-options=image --net=host --uuid-file-save="/tmp/uuid" wsserver.aci & sleep 30s'
 
-sleep 2.5m
+sleep 150
 
 vagrant ssh -c "sudo rkt stop --force --uuid-file=/tmp/uuid"
 vagrant ssh -c 'nohup sudo rkt run --insecure-options=image --net=host --uuid-file-save="/tmp/uuid" wsserver.aci & sleep 30s'
 
-sleep 2.5m
+sleep 150
 
 vagrant ssh -c "sudo rkt stop --force --uuid-file=/tmp/uuid"
 vagrant ssh -c 'nohup sudo rkt run --insecure-options=image --net=host --uuid-file-save="/tmp/uuid" wsserver.aci & sleep 30s'
 
-sleep 2.5m
+sleep 150
 
 vagrant ssh -c "sudo rkt stop --force --uuid-file=/tmp/uuid"
 vagrant ssh -c 'nohup sudo rkt run --insecure-options=image --net=host --uuid-file-save="/tmp/uuid" wsserver.aci & sleep 30s'
 
 #sleep 3.25m
-sleep 3.5m
+sleep 210
 
 vagrant ssh -c "sudo rkt stop --force --uuid-file=/tmp/uuid"
 

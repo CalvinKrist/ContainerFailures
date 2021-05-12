@@ -5,7 +5,7 @@ id="$1"
 
 run_client() {
 	cd ../results
-	java -jar ../tests/Client.jar localhost 8080 "$id" 14
+	java -jar ../tests/ClientCompute.jar localhost 8080 "$id" 14
 }
 
 cd ../rkt
@@ -13,7 +13,7 @@ vagrant ssh -c 'nohup sudo rkt run --insecure-options=image --net=host --uuid-fi
 
 run_client &
 
-sleep 14.5m
+sleep 870
 
 vagrant ssh -c "sudo rkt stop --uuid-file=/tmp/uuid"
 
