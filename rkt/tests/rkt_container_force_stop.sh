@@ -5,7 +5,7 @@ id="$1"
 
 run_client() {
 	cd ../results
-	java -jar ../tests/ClientCompute.jar localhost 8080 "$id" 14
+	java -jar ../tests/Client.jar localhost 8080 "$id" 14
 }
 
 cd ../rkt
