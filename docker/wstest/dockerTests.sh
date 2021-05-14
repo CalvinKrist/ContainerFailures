@@ -6,9 +6,22 @@ serverName=wsserver
 container_name=$(sudo docker run -d -p 8080:8080 $serverName)
 cd client_operator
 
+if [ "$1" = "1" ] ; then
+	./docker_baseline.sh $container_name 1
+fi
+if [ "$1" = "2" ] ; then
+	./docker_container_force_stop.sh $container_name 2
+fi
 if [ "$1" = "3" ] ; then
 	./docker_container_pause.sh $container_name 3
 fi
+if [ "$1" = "4" ] ; then
+	./docker_container_restart.sh $container_name 4
+fi
+if [ "$1" = "5" ] ; then
+	./docker_container_stop.sh $container_name 5
+fi
+
 
 docker stop "$container_name"
 
